@@ -8,10 +8,68 @@
     <link rel="shortcut icon" href="/assets/favicon.ico" type="image/x-icon">
     <meta name="description" content="Control Finance - Seu controle financeiro">
     <link rel="stylesheet" href="/styles/globalStyles.css">
+    <link rel="stylesheet" href="/styles/modal.css">
+    <link rel="stylesheet" href="/styles/buttons.css">
     <link rel="stylesheet" href="index.css">
 </head>
 <body>
-    <main id="app"></main>
+    <header class="top flex align-center">
+        <div class="ca flex align-center justify-between">
+            <div class="logo flex justify-between">
+                <p class="controlLogo">Control</p>
+                <p class="financeLogo">Finance</p>
+            </div>
+            <button data-open-modal="modal" class="registerValueTop">Registrar novo valor</button>
+        </div>
+    </header>
+
+
+    <main id="app" class="mid flex flex-col justify-between">
+        <div class="options flex align-center justify-between">
+            <h3>Resumo Financeiro</h3>
+            <div class="options-buttons flex">
+                <button id="all" class="button-top button-choose">Todos</button>
+                <button id="entries" class="button-top">Entradas</button>
+                <button id="exits" class="button-top">Saídas</button>
+            </div>
+        </div>
+        <div class="values-sum flex align-center justify-between">
+            <p>Soma dos Valores</p>
+            <p class="totalValue">R$ 0,00</p>
+        </div>
+        <div data-open-modal="modal" class="empty-value flex flex-col align-center justify-center">
+            <h3>Nenhum valor cadastrado</h3>
+            <p>Registrar novo valor</p>
+        </div>
+
+        <ul class="list-prices flex flex-col">
+            
+        </ul>
+    </main>
+
+    <main id="modal" class="modal-bg flex align-center justify-center">
+        <div class="modal flex flex-col">
+            <div class="modal-header flex align-center justify-between">
+                <h3>Registro de valor</h3>
+                <button data-open-modal="modal" id="close-modal" class="flex align-center justify-center"><img src="../../assets/close.png"></button>
+            </div>
+            <p>Digite o valor e em seguida aperte no botão referente ao tipo do valor</p>
+            <form class="type-value flex flex-col">
+                <label for="valor">Valor</label>
+                <input type="number" id="valor" placeholder="R$ 00,00" autocomplete="off">
+            </form>
+            <div class="value-types flex align-center">
+                <p>Tipo de valor</p>
+                <button id="entry" class="button-top button-choose">Entrada</button>
+                <button id="exit" class="button-top">Saída</button>
+            </div>
+            <div class="final-buttons flex justify-end">
+                <button data-open-modal="modal" class="cancel-button">Cancelar</button>
+                <input id="send" class="registerValueTop" type="submit" value="Inserir valor">
+            </div>
+        </div>
+    </main>
+
     <script src="/scripts/modal.js"></script>
     <script src="valuesData.js"></script>
     <script src="index.js"></script>

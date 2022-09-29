@@ -1,1 +1,127 @@
-/* Desenvolva a estilização da sua página aqui */
+
+.top{
+    width: 100%;
+    height: 6.813rem;
+    background-color: var(--color-grey-5);
+    position: relative;
+    top: 0;
+    left: 0;
+    z-index: 2;
+}
+.ca{
+    margin: 0 auto;
+    width: 62.5rem;
+    padding: 0 1.25rem;
+}
+.logo{
+    font-weight: var(--font-weight-1);
+    width: 9.563rem;
+    font-size: var(--font-size-1);
+}
+.controlLogo{
+    color: var(--color-brand-1);
+}
+.financeLogo{
+    color: var(--color-grey-1)
+}
+
+
+
+.mid{
+    max-width: 100%;
+    width: 1000px;
+    gap: 16px;
+    margin: 2% auto;
+    padding: 0 20px;
+    z-index: 1;
+}
+.options{
+    width: 100%;
+    padding: 0.938rem 0;
+}
+.options > h3{
+    font-size: var(--font-size-2);
+}
+.options-buttons{
+    gap: var(--gap-1);
+}
+.values-sum{
+    height: 2.75rem;
+    background-color: var(--color-grey-5);
+    padding: 2rem 1rem; 
+    border-radius: var(--radius-1);
+}
+.values-sum > p{
+    font-weight: var(--font-weight-1);
+}
+
+
+.empty-value{/*-------------------------DISPLAY: NONE------------------------------*/
+
+    /*display: none;*/
+
+    margin: 0 auto;
+    background-color: var(--color-grey-5);
+    width: 100%;
+    height: 6.25rem;
+    gap: var(--gap-1);
+    border: 0.094rem dashed var(--color-grey-3);
+    border-radius: var(--radius-1);
+    cursor: pointer;
+}
+.empty-value > h3{
+    font-weight: var(--font-weight-2)
+}
+
+
+
+.list-prices{/*-------------------------DISPLAY: NONE------------------------------*/
+
+    /*display: none; /*--------------------------------------------------------------------*/
+
+    list-style: none;
+    gap: var(--gap-1);
+}
+.list-prices > li{
+    width: 100%;
+    padding: 0.938rem;
+    height: 3.75rem;
+    border: 0.125rem solid var(--color-grey-5);
+    border-radius: var(--radius-1);
+}
+.list-prices img{
+    width: 1.875rem;
+    height: 1.875rem;
+}
+.info-button{
+    width: 9.375rem;
+}
+.info-button > p{
+    background-color: var(--color-grey-5);
+    padding: 0.438rem 0.875rem;
+    border-radius: var(--radius-2);
+}
+
+
+@media(max-width: 450px){
+    .options{
+        flex-direction: column;
+        gap: var(--gap-2)
+    }
+}
+@media(max-width: 375px){
+    .ca{
+        flex-direction: column;
+        gap: var(--gap-1);
+        align-items: flex-start;
+    }
+    .registerValueTop{
+        width: 100%;
+    }
+    .empty-value{
+        font-size: 0.688rem;
+    }
+    .empty-value > h3{
+        font-weight: var(--font-weight-1);
+    }
+}

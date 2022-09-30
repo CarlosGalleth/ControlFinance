@@ -97,3 +97,20 @@ input::-webkit-inner-spin-button{
         width: 50%;
     }
 }
+
+
+@keyframes animateModal{
+    0%{
+        transform:translateY(-50%);
+        opacity: 0;
+    }
+    100%{
+        transform: translateY(0);
+        opacity: 1;
+    }
+
+}
+.modal{
+    animation: animateModal 0.3s;
+ 
+}

@@ -101,6 +101,9 @@
     padding: 0.438rem 0.875rem;
     border-radius: var(--radius-2);
 }
+.display-card{
+    display: none;
+}
 
 
 @media(max-width: 450px){

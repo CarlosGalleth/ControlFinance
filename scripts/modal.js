@@ -9,12 +9,26 @@ openModalButtons.map((elem) => {
 
 const btn = document.querySelector("#send")
 function capturarValue(botao) {
-    return botao.addEventListener('click', function (e) {
+    let entry = document.getElementById("entry")
+    let exit = document.getElementById("exit")
+    let isEntry = true
+    entry.addEventListener('click', function(){
+        entry.classList.add("button-choose")
+        exit.classList.remove("button-choose")
+        isEntry = true
+    })
+    exit.addEventListener('click', function(){
+        exit.classList.add("button-choose")
+        entry.classList.remove("button-choose")
+        isEntry = false
+    })
+    
+    botao.addEventListener('click', function (e) {
         e.preventDefault()
         const name = document.querySelector("#valor")
         const value = name.value
         if (value !== "") {
-            criarLi(value)
+            criarLi(value, isEntry)
         }
     })
 }

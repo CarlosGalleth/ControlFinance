@@ -22,17 +22,14 @@ function renderizarLi(values) {
                 `
         li.classList.add("flex", "justify-between", "align-center")
         li.id = element.categoryID
-        filtrarAll(li)
         ul.append(li)
         if (valuesCategory[element.categoryID] == "Entrada") {
             elemValuesEntry.push(parseFloat(element.value))
             valorEntry = elemValuesEntry.reduce((prev,curr) => prev + curr)
-            filtrarEntries(li)
         }
         else{
             elemValuesExit.push(parseFloat(element.value))
             valorExit = elemValuesExit.reduce((prev,curr) => prev + curr)
-            filtrarExits(li)
         }
         valorTotal.innerText = `R$ ${valorEntry - valorExit}`
     });
@@ -42,7 +39,7 @@ renderizarLi(insertedValues)
 
 /* -----Filtrar----- */
 const ul = document.getElementById("ul")
-function filtrarAll(li) {
+function filtrarAll(values) {
     let all = document.getElementById("all")
     let entries = document.getElementById("entries")
     let exits = document.getElementById("exits")
@@ -52,13 +49,17 @@ function filtrarAll(li) {
         entries.classList.remove("button-choose")
         exits.classList.remove("button-choose")
 
-        ul.append(li)
+        let filteredAll = values.filter(callbackAll)
+        renderizarLi(filteredAll)
     })
+}
+filtrarAll(insertedValues)
+function callbackAll(value) {
+    return value.categoryID == 0 || value.categoryID == 1
 }
 
 
-
-function filtrarEntries(li) {
+function filtrarEntries(values) {
     let all = document.getElementById("all")
     let entries = document.getElementById("entries")
     let exits = document.getElementById("exits")
@@ -69,13 +70,17 @@ function filtrarEntries(li) {
         entries.classList.add("button-choose")
         exits.classList.remove("button-choose")
 
-        ul.append(li)
+        let filteredEntry = values.filter(callbackEntry)
+        renderizarLi(filteredEntry)
     })
+}
+filtrarEntries(insertedValues)
+function callbackEntry(value){
+    return value.categoryID == 0
 }
 
 
-
-function filtrarExits(li) {
+function filtrarExits(values) {
     let all = document.getElementById("all")
     let entries = document.getElementById("entries")
     let exits = document.getElementById("exits")
@@ -85,9 +90,14 @@ function filtrarExits(li) {
         all.classList.remove("button-choose")
         entries.classList.remove("button-choose")
         exits.classList.add("button-choose")
-        
-        ul.append(li)
+
+        let filteredExit = values.filter(callbackExit)
+        renderizarLi(filteredExit)
     })
+}
+filtrarExits(insertedValues)
+function callbackExit(value) {
+    return value.categoryID == 1
 }
 
 /* -----Criar li pelo modal----- */

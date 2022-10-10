@@ -11,25 +11,42 @@ function renderizarLi(values) {
     let valorExit = 0
     values.forEach(element => {
         let li = document.createElement('li')
-        li.innerHTML = `
-                <h4>R$ ${element.value}</h4>
-                <div class="info-button flex align-center justify-between">
-                    <p>${valuesCategory[element.categoryID]}</p>
-                    <button class="button-remove">
-                        <img src="../../assets/trash.png">
-                    </button>
-                </div>
-                `
+        let h4 = document.createElement("h4")
+        h4.innerText = `R$ ${element.value}`
+        let div = document.createElement("div")
+        div.classList.add("info-button", "flex", "align-center", "justify-between")
+        let p = document.createElement("p")
+        p.innerText = valuesCategory[element.categoryID]
+        let button = document.createElement("button")
+        button.classList.add("button-remove")
+        let img = document.createElement("img")
+        img.src = "../../assets/trash.png"
+        button.append(img)
+        div.append(p, button)
+        li.append(h4, div)
         li.classList.add("flex", "justify-between", "align-center")
         li.id = element.categoryID
+        button.addEventListener('click', function (a) {
+            if (valuesCategory[element.categoryID] == "Entrada") {
+                valorEntry -= element.value
+                valorTotal.innerText = `R$ ${valorEntry - valorExit}`
+            }
+            else {
+                valorExit -= element.value
+                valorTotal.innerText = `R$ ${valorEntry - valorExit}`
+            }
+            li.remove()
+            removerCard(ul)
+        })
         ul.append(li)
+
         if (valuesCategory[element.categoryID] == "Entrada") {
             elemValuesEntry.push(parseFloat(element.value))
-            valorEntry = elemValuesEntry.reduce((prev,curr) => prev + curr)
+            valorEntry = elemValuesEntry.reduce((prev, curr) => prev + curr)
         }
-        else{
+        else {
             elemValuesExit.push(parseFloat(element.value))
-            valorExit = elemValuesExit.reduce((prev,curr) => prev + curr)
+            valorExit = elemValuesExit.reduce((prev, curr) => prev + curr)
         }
         valorTotal.innerText = `R$ ${valorEntry - valorExit}`
     });
@@ -75,7 +92,7 @@ function filtrarEntries(values) {
     })
 }
 filtrarEntries(insertedValues)
-function callbackEntry(value){
+function callbackEntry(value) {
     return value.categoryID == 0
 }
 
@@ -121,18 +138,6 @@ function criarLi(valorInput, isEntry) {
     renderizarLi(insertedValues)
 }
 
-/* -----Remover li----- */
-function removerLi() {
-    let buttons = Array.from(document.getElementsByClassName("button-remove"))
-    buttons.forEach(elem => {
-        return elem.addEventListener('click', function (a) {
-            elem.parentElement.parentElement.remove()
-            let ul = document.getElementById("ul")
-            removerCard(ul)
-        })
-    })
-}
-removerLi()
 /* -----Remover card----- */
 
 function removerCard(ul) {
